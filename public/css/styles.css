@@ -81,3 +81,30 @@ input, textarea {
     background: #5f5f5f5f;
     border-bottom: 1px solid black;
 }
+
+.btn {
+    display: inline-block;
+    height: 32px;
+    width: 150px;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: 0.5s;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.btn-primary {
+    background: #1f94d4;
+}
+
+.btn-danger {
+    background: #FF0000;
+}

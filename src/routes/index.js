@@ -27,8 +27,17 @@ module.exports = function () {
             post
         })
     })
-    app.put('/blog/edit/:id', async function (req, res) {
-        console.log(req.body);
+
+    app.post('/blog/edit/:id', async function (req, res) {
+       await Post.updateOne({ _id: req.params.id }, req.body);
+
+       res.redirect('/')
+    })
+
+    app.get('/blog/delete/:id', async function (req, res) {
+        await Post.deleteOne({ _id: req.params.id });
+
+        res.redirect('/')
     })
 
     app.get('/post/:id', async function (req, res) {

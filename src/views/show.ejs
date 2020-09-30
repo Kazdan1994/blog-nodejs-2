@@ -13,7 +13,8 @@
             <p>
                 <%= post.body %>
             </p>
-            <a href="/blog/edit/<%= post.id %>">Editer</a>
+            <a class="btn btn-primary" href="/blog/edit/<%= post.id %>">Editer</a>
+            <a class="btn btn-danger" href="/blog/delete/<%= post.id %>">Supprimer</a>
         </div>
     </div>
 </div>
