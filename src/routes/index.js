@@ -18,6 +18,9 @@ module.exports = function () {
             post
         })
     })
+    app.get('/blog/new', async function (req, res) {
+        res.render('new')
+    })
 
     return app;
 }
