@@ -18,4 +18,25 @@ module.exports = function (app) {
 
         res.send(post)
     })
+
+    // Route pour créer un post
+    app.post('/api/posts', async function (req, res) {
+        const post = await PostService.create(req.body)
+
+        res.send(post)
+    })
+
+    app.put('/api/posts/:id', async function (req, res) {
+        const post = await PostService.update(req.params.id, req.body)
+
+        res.send(post)
+    })
+
+    app.delete('/api/posts/:id', async function (req, res) {
+        const post = await PostService.delete(req.params.id)
+
+        res.send({
+            message: 'Post supprimé avec succès'
+        })
+    })
 }
