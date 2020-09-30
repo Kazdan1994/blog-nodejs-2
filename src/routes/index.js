@@ -5,14 +5,18 @@ module.exports = function () {
     const app = Router();
 
     app.get('/', async function (req, res) {
-        const posts = await Post.find();
+        const posts = await Post.find({});
 
         res.render('index', {
             posts
         })
     })
-    app.get('/post', function (req, res) {
-        res.render('show')
+    app.get('/post/:id', async function (req, res) {
+        const post = await Post.findById(req.params.id);
+
+        res.render('show', {
+            post
+        })
     })
 
     return app;
