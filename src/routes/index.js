@@ -1,52 +1,10 @@
 const { Router } = require('express');
-const Post = require('../db/models/postModel');
+const postRoutes = require('./post')
 
 module.exports = function () {
     const app = Router();
 
-    app.get('/', async function (req, res) {
-        const posts = await Post.find({});
-
-        res.render('index', {
-            posts
-        })
-    })
-    app.get('/blog/new', async function (req, res) {
-        res.render('new')
-    })
-    app.post('/blog/new', async function (req, res) {
-        await Post.create(req.body);
-
-        res.redirect('/');
-    })
-
-    app.get('/blog/edit/:id', async function (req, res) {
-        const post = await Post.findById(req.params.id);
-
-        res.render('edit', {
-            post
-        })
-    })
-
-    app.post('/blog/edit/:id', async function (req, res) {
-       await Post.updateOne({ _id: req.params.id }, req.body);
-
-       res.redirect('/')
-    })
-
-    app.get('/blog/delete/:id', async function (req, res) {
-        await Post.deleteOne({ _id: req.params.id });
-
-        res.redirect('/')
-    })
-
-    app.get('/post/:id', async function (req, res) {
-        const post = await Post.findById(req.params.id);
-
-        res.render('show', {
-            post
-        })
-    })
+    postRoutes(app);
 
     return app;
 }
