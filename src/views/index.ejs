@@ -11,6 +11,9 @@
                     <p class="text-secondary">
                         <%= post.description %>
                     </p>
+                    <small>
+                        Crée le <%= new Intl.DateTimeFormat('en-GB').format(post.createdAt) %>
+                    </small>
                 </div>
             </div>
         </a>
