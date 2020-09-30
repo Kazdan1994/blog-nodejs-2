@@ -21,6 +21,9 @@ module.exports = function () {
     app.get('/blog/new', async function (req, res) {
         res.render('new')
     })
+    app.post('/blog/new', async function (req, res) {
+        console.log(req.body);
+    })
 
     return app;
 }
