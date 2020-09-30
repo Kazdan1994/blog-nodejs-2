@@ -1,12 +1,13 @@
 const { Router } = require('express');
-const postRoutes = require('./post')
-const apiRoute = require('./api')
+
+const postRoutes = require('./web/post')
+const postApiRoute = require('./api/post')
 
 module.exports = function () {
     const app = Router();
 
     postRoutes(app);
-    apiRoute(app);
+    postApiRoute(app);
 
     return app;
 }
