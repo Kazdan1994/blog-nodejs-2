@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const User = require('../db/models/userModel');
 
 exports.register = async function (req, res) {
     res.render('register', {
@@ -26,7 +27,11 @@ exports.signup = async function (req, res) {
     })
 
     try {
-       await schema.validateAsync(req.body);
+       const value = await schema.validateAsync(req.body);
+
+       const user = await User.create(value);
+
+       console.log(user);
 
        res.redirect('/');
     }
@@ -36,4 +41,8 @@ exports.signup = async function (req, res) {
     }
 
     // Crée un nouvel utilisateur
+}
+
+exports.signin = async function (req, res) {
+
 }
