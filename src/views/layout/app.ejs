@@ -29,6 +29,11 @@
         <% } %>
     </ul>
 </nav>
+
+<% if (typeof errors !== "undefined" && errors.length > 0) { %>
+    <div class="container"><%= errors[0][0].message %></div>
+<% } %>
+
     <%- body %>
 
 </body>

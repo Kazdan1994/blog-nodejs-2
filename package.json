@@ -18,8 +18,12 @@
   },
   "homepage": "https://github.com/Kazdan1994/blog-nodejs-2#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "ejs-locals": "^1.0.2",
     "express": "^4.17.1",
+    "express-flash-message": "^1.0.6",
+    "express-session": "^1.17.1",
+    "joi": "^17.2.1",
     "mongoose": "^5.10.7"
   },
   "devDependencies": {
