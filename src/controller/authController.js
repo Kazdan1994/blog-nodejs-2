@@ -29,23 +29,21 @@ exports.signup = async function (req, res) {
     })
 
     try {
-       const value = await schema.validateAsync(req.body);
+       await schema.validateAsync(req.body);
 
-       User.register({
-           username: value.email,
-           active: true,
-       }, value.password, function (err, result) {
-           if (err) {
-               console.error(err);
-           }
-           const authenticate = User.authenticate();
-           authenticate(value.email, value.password, function(err, result) {
-               if (err) { console.error(err) }
-
-               // Value 'result' is set to false. The user could not be authenticated since the user is not active
-           });
-           res.redirect('/');
-       })
+        User.register(new User({
+            username: req.body.email,
+            email: req.body.email,
+            password: req.body.password
+        }),
+            req.body.password,
+            function(err) {
+            if (err) {
+                return req.flash('error', [err])
+                    .then(() => next(err));
+            }
+            res.redirect('/');
+        });
     }
     catch (err) {
         await req.flash('error', err.details)
