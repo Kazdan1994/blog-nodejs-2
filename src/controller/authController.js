@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const User = require('../db/models/userModel');
+const brypt = require("bcrypt");
 
 exports.register = async function (req, res) {
     res.render('register', {
@@ -9,7 +10,9 @@ exports.register = async function (req, res) {
 }
 
 exports.login = async function (req, res) {
-    res.render('login');
+    res.render('login', {
+        errors: await req.consumeFlash('error')
+    });
 }
 
 exports.signup = async function (req, res) {
@@ -30,22 +33,40 @@ exports.signup = async function (req, res) {
     try {
        const value = await schema.validateAsync(req.body);
 
-       value.password = await bcrypt.hash(value.password, 10);
+       User.register({
+           username: value.email,
+           active: true,
+       }, value.password, function (err, result) {
+           if (err) {
+               console.error(err);
+           }
+           const authenticate = User.authenticate();
+           authenticate(value.email, value.password, function(err, result) {
+               if (err) { console.error(err) }
 
-       const user = await User.create(value);
-
-       console.log(user);
-
-       res.redirect('/');
+               // Value 'result' is set to false. The user could not be authenticated since the user is not active
+           });
+           res.redirect('/');
+       })
     }
     catch (err) {
         await req.flash('error', err.details)
         res.redirect('register');
     }
-
-    // Crée un nouvel utilisateur
 }
 
 exports.signin = async function (req, res) {
+    const { email, password } = req.body
 
+    // Trouver l'utilisateur qui correspond avec son email
+    const user = await User.findOne({ username: email })
+
+    if (!user) {
+        await req.flash('error', 'email seems not exists')
+        res.redirect('/login')
+    }
+
+    const auth = await User.authenticate()(user.email, password);
+
+    console.log(auth);
 }
