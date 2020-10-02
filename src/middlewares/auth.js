@@ -1,8 +1,9 @@
 const passport = require("passport");
 
 module.exports = function (req, res, next) {
-    passport.authenticate('local',
+    passport.authenticate('local', {},
         function (err, user, info) {
+
             if (err) {
                 return next(err);
             }
@@ -15,7 +16,6 @@ module.exports = function (req, res, next) {
                 if (err) {
                     return next(err);
                 }
-
                 return res.redirect('/');
             });
         })

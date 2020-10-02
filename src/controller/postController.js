@@ -5,12 +5,15 @@ exports.index = async function (req, res) {
     const posts = await PostService.find();
 
     res.render('index', {
-        posts
+        posts,
+        user: req.user
     })
 }
 
 exports.new = async function (req, res) {
-    res.render('new')
+    res.render('new', {
+        user: req.user
+    })
 }
 
 exports.create = async function (req, res) {
@@ -23,7 +26,8 @@ exports.edit = async function (req, res) {
     const post = await Post.findById(req.params.id);
 
     res.render('edit', {
-        post
+        post,
+        user: req.user
     })
 }
 
@@ -43,6 +47,7 @@ exports.show = async function (req, res) {
     const post = await Post.findById(req.params.id);
 
     res.render('show', {
-        post
+        post,
+        user: req.user
     })
 }

@@ -1,7 +1,5 @@
 const Joi = require('joi');
-const bcrypt = require('bcrypt');
 const User = require('../db/models/userModel');
-const brypt = require("bcrypt");
 
 exports.register = async function (req, res) {
     res.render('register', {
@@ -66,7 +64,11 @@ exports.signin = async function (req, res) {
         res.redirect('/login')
     }
 
-    const auth = await User.authenticate()(user.email, password);
+    await User.authenticate()(user.email, password);
+}
 
-    console.log(auth);
+exports.logout = async function (req, res) {
+    await req.logout();
+
+    res.redirect('/login');
 }
