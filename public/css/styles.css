@@ -64,13 +64,6 @@ a {
     margin: 50px;
 }
 
-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
 .form-group {
     margin-bottom: 20px;
 }
@@ -108,3 +101,55 @@ input, textarea {
 .btn-danger {
     background: #FF0000;
 }
+
+.navbar {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    padding: 8px 16px;
+}
+
+.logo {
+    flex: 1;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-item {
+    list-style: none;
+    margin-right: 20px;
+}
+
+.card-auth {
+    margin-top: 50px;
+    width: 100%;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    padding: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 1.2em;
+    margin-bottom: 4px;
+}
+
+.form-group input {
+    border: none;
+    border-bottom: 1px solid #000000;
+    background: #f5f5f5;
+    height: 32px;
+}
+

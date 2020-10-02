@@ -6,7 +6,29 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+<nav class="navbar">
+    <div class="logo">
+        IIM
+    </div>
 
+    <ul class="nav-list">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Blog</a>
+        </li>
+        <% if (typeof user !== "undefined") { %>
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Se deconnecter</a>
+            </li>
+        <% } else { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Se connecter</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/register">Créer un compte</a>
+            </li>
+        <% } %>
+    </ul>
+</nav>
     <%- body %>
 
 </body>
