@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const bcrypt = require('bcrypt');
 const User = require('../db/models/userModel');
 
 exports.register = async function (req, res) {
@@ -28,6 +29,8 @@ exports.signup = async function (req, res) {
 
     try {
        const value = await schema.validateAsync(req.body);
+
+       value.password = await bcrypt.hash(value.password, 10);
 
        const user = await User.create(value);
 
