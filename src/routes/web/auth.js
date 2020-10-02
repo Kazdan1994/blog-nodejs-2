@@ -1,4 +1,4 @@
-const AuthController = require('../controller/authController');
+const AuthController = require('../../controller/authController');
 
 module.exports = function (app) {
     app.get('/register', AuthController.register)

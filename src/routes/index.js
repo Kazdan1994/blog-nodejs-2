@@ -1,14 +1,14 @@
 const { Router } = require('express');
-const postRoutes = require('./post')
-const apiRoute = require('./api')
-const authRoute = require('./auth')
+const postRoutes = require('./web/post')
+const postApiRoute = require('./api/post')
+const authRoutes = require('./web/auth.js')
 
 module.exports = function () {
     const app = Router();
 
-    authRoute(app);
+    authRoutes(app);
     postRoutes(app);
-    apiRoute(app);
+    postApiRoute(app);
 
     return app;
 }

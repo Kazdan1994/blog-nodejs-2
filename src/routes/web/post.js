@@ -1,4 +1,4 @@
-const PostController = require('../controller/postController');
+const PostController = require('../../controller/postController');
 
 module.exports = function (app) {
     app.get('/', PostController.index);
